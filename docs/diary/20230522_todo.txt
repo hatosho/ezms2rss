@@ -46,14 +46,34 @@ linter formatter の導入
 
 git init
 -レポジトリぶち上げ。v0.0.1
------→ここまで目標
 
-実行モードチェッカー
--環境切り替え、クレデンシャルファイルなど、どうやって管理すべきだ？
+git remote add origin https://github.com/hatosho/ezms2rss.git
+git branch -M main
+git push -u origin main
+
+git ignore credentials
+
+
+readme（instlation）
+- poetryでの環境構築
+- vscode拡張機能の導入
+- メンテナンス方法（モジュールのアップデート）
+- credentialファイルの準備する
+- ms2rssのインストール
+- エクセル
+
+readme（pre-commit）
+- push前にmakefil
+
+
+-----→ここまで目標
 
 つづき
 -root配下にinitつくる?
 -そんなにリッチじゃなくていい。対話インタフェースは不要(readmeでカバー)
+
+実行モードチェッカー
+-環境切り替え、クレデンシャルファイルなど、どうやって管理すべきだ？
 
 
 テストパターン作る
