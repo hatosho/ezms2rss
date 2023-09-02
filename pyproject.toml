@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "ezms2rss"
+version = "0.1.0"
+description = ""
+authors = ["hatosho <i.hatosho@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+xlwings = "^0.30.10"
+tabulate = "^0.9.0"
+pandas = "^2.0.3"
+numpy = "^1.25.2"
+pyautogui = "^0.9.54"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+mypy = "^1.5.1"
+pytest = "^7.4.0"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.11"
+no_strict_optional = true
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[tool.black]
+target-version = ['py311']

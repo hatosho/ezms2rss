@@ -1,0 +1,5 @@
+[flake8]
+exclude = ./.venv/*,./src/utils/__init__.py
+max-line-length = 88
+extend-ignore = E203,E402
+max-complexity = 10

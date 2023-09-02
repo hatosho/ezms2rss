@@ -1,0 +1,111 @@
+[2023-08-19 17:14:47.631] - INFO - MainProcess - MainThread - 888
+[2023-08-19 17:14:47.631] - INFO - MainProcess - MainThread - start >> open transaction-workbook.
+[2023-08-19 17:14:47.631] - DEBUG - MainProcess - MainThread - open MarketSpeed2.exe
+[2023-08-19 17:14:47.639] - DEBUG - MainProcess - MainThread - sleep 15s. wait for updating of MarketSpeed2.exe
+[2023-08-19 17:15:02.888] - DEBUG - MainProcess - MainThread - sleep 15s. wait for full activation of MarketSpeed2.exe
+[2023-08-19 17:15:17.898] - DEBUG - MainProcess - MainThread - create new book.
+[2023-08-19 17:15:19.236] - DEBUG - MainProcess - MainThread - create new 5 sheets.
+[2023-08-19 17:15:19.498] - DEBUG - MainProcess - MainThread - delete sheet: sheet1.
+[2023-08-19 17:15:19.540] - DEBUG - MainProcess - MainThread - sleep 2s, wait for saving xlsx.
+[2023-08-19 17:15:21.554] - DEBUG - MainProcess - MainThread - close book.
+[2023-08-19 17:15:21.565] - DEBUG - MainProcess - MainThread - sleep 2s, wait for closing xlsx.
+[2023-08-19 17:15:24.764] - DEBUG - MainProcess - MainThread - re-open transaction book on subprocess.
+[2023-08-19 17:15:24.773] - DEBUG - MainProcess - MainThread - sleep 10s, wait for full activation of workbook.
+[2023-08-19 17:15:34.797] - DEBUG - MainProcess - MainThread - load excel add-in.
+[2023-08-19 17:15:36.122] - DEBUG - MainProcess - MainThread - load excel add-in has completed: True
+[2023-08-19 17:15:36.122] - DEBUG - MainProcess - MainThread - sleep 2s, wait for full activation of loading add-in.
+[2023-08-19 17:15:38.133] - DEBUG - MainProcess - MainThread - kick add-in button of connecting.
+[2023-08-19 17:15:38.904] - DEBUG - MainProcess - MainThread - sleep 5s, wait for button display to toggle.
+[2023-08-19 17:15:43.909] - DEBUG - MainProcess - MainThread - initialize sheet: command.
+[2023-08-19 17:15:44.51 ] - DEBUG - MainProcess - MainThread - initialize sheet: orderlist.
+[2023-08-19 17:15:44.503] - DEBUG - MainProcess - MainThread - initialize sheet: orderidlist.
+[2023-08-19 17:15:44.754] - DEBUG - MainProcess - MainThread - initialize sheet: positionlist.
+[2023-08-19 17:15:45.6  ] - DEBUG - MainProcess - MainThread - initialize sheet: ticklist.
+[2023-08-19 17:15:45.132] - DEBUG - MainProcess - MainThread - sleep 5s, wait for results to start updating.
+[2023-08-19 17:15:50.140] - DEBUG - MainProcess - MainThread - save xlsx book.
+[2023-08-19 17:15:50.189] - DEBUG - MainProcess - MainThread - sleep 2s, wait for saving xlsx.
+[2023-08-19 17:15:52.196] - INFO - MainProcess - MainThread - close >> transaction-workbook.
+[2023-08-19 17:15:52.201] - DEBUG - MainProcess - MainThread - copy xlsx sheet to txt >> command.
+[2023-08-19 17:15:52.205] - DEBUG - MainProcess - MainThread - copy xlsx sheet to txt >> orderlist.
+[2023-08-19 17:15:52.210] - DEBUG - MainProcess - MainThread - copy xlsx sheet to txt >> orderidlist.
+[2023-08-19 17:15:52.213] - DEBUG - MainProcess - MainThread - copy xlsx sheet to txt >> positionlist.
+[2023-08-19 17:15:52.216] - DEBUG - MainProcess - MainThread - copy xlsx sheet to txt >> ticklist.
+[2023-08-19 17:15:52.216] - DEBUG - MainProcess - MainThread - kill the process of market_speed2
+[2023-08-19 17:15:52.216] - DEBUG - MainProcess - MainThread - save book.
+[2023-08-19 17:15:52.282] - DEBUG - MainProcess - MainThread - sleep 2s, wait for saving xlsx.
+[2023-08-19 17:15:54.288] - DEBUG - MainProcess - MainThread - close book.
+[2023-08-19 17:15:54.331] - DEBUG - MainProcess - MainThread - sleep 2s, wait for closing xlsx.
+[2023-08-19 17:15:56.346] - DEBUG - MainProcess - MainThread - kill the process of xlsx_workbook.
+[2023-08-19 17:15:56.346] - DEBUG - MainProcess - MainThread - kill command return here, None
+[2023-08-19 17:42:51.696] - INFO - MainProcess - MainThread - 888
+[2023-08-19 17:42:51.697] - INFO - MainProcess - MainThread - start >> open transaction-workbook.
+[2023-08-19 17:42:51.697] - DEBUG - MainProcess - MainThread - open MarketSpeed2.exe
+[2023-08-19 17:42:51.702] - DEBUG - MainProcess - MainThread - sleep 15s. wait for updating of MarketSpeed2.exe
+[2023-08-19 17:43:06.947] - DEBUG - MainProcess - MainThread - sleep 15s. wait for full activation of MarketSpeed2.exe
+[2023-08-19 17:43:21.953] - DEBUG - MainProcess - MainThread - create new book.
+[2023-08-19 17:43:22.810] - DEBUG - MainProcess - MainThread - create new 5 sheets.
+[2023-08-19 17:43:23.89 ] - DEBUG - MainProcess - MainThread - delete sheet: sheet1.
+[2023-08-19 17:43:23.129] - DEBUG - MainProcess - MainThread - sleep 2s, wait for saving xlsx.
+[2023-08-19 17:43:25.143] - DEBUG - MainProcess - MainThread - close book.
+[2023-08-19 17:43:25.151] - DEBUG - MainProcess - MainThread - sleep 2s, wait for closing xlsx.
+[2023-08-19 17:43:27.996] - DEBUG - MainProcess - MainThread - re-open transaction book on subprocess.
+[2023-08-19 17:43:28.2  ] - DEBUG - MainProcess - MainThread - sleep 10s, wait for full activation of workbook.
+[2023-08-19 17:43:38.759] - DEBUG - MainProcess - MainThread - load excel add-in.
+[2023-08-19 17:43:40.113] - DEBUG - MainProcess - MainThread - load excel add-in has completed: True
+[2023-08-19 17:43:40.114] - DEBUG - MainProcess - MainThread - sleep 2s, wait for full activation of loading add-in.
+[2023-08-19 17:43:42.114] - DEBUG - MainProcess - MainThread - kick add-in button of connecting.
+[2023-08-19 17:43:42.881] - DEBUG - MainProcess - MainThread - sleep 5s, wait for button display to toggle.
+[2023-08-19 17:43:47.896] - DEBUG - MainProcess - MainThread - initialize sheet: command.
+[2023-08-19 17:43:48.39 ] - DEBUG - MainProcess - MainThread - initialize sheet: orderlist.
+[2023-08-19 17:43:48.320] - DEBUG - MainProcess - MainThread - initialize sheet: orderidlist.
+[2023-08-19 17:43:48.573] - DEBUG - MainProcess - MainThread - initialize sheet: positionlist.
+[2023-08-19 17:43:48.823] - DEBUG - MainProcess - MainThread - initialize sheet: ticklist.
+[2023-08-19 17:43:48.950] - DEBUG - MainProcess - MainThread - sleep 5s, wait for results to start updating.
+[2023-08-19 17:43:53.962] - DEBUG - MainProcess - MainThread - save xlsx book.
+[2023-08-19 17:43:53.963] - ERROR - MainProcess - MainThread - [異常検出終了] - ms2rss起動
+Traceback (most recent call last):
+  File "C:\Projects\ezms2rss\ezms2rss\main.py", line 18, in open_workbook_with_ms2rss
+    ms2rss.start_excel_with_ms2rss()
+  File "C:\Projects\ezms2rss\ezms2rss\ms2rss.py", line 49, in start_excel_with_ms2rss
+    utils.open_excel(EXCEL_PATH, TRANSACTION_BOOK_PATH, EXCEL_ADDIN_PATH, ORDER_TRRIGER)
+  File "C:\Projects\ezms2rss\ezms2rss\utils\xlsx.py", line 30, in open_excel
+    wb.save(book_path)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\main.py", line 763, in save
+    display_alerts = self.app.display_alerts
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\main.py", line 731, in app
+    return App(impl=self.impl.app)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\_xlwindows.py", line 522, in app
+    return App(xl=self.xl.Application)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\_xlwindows.py", line 122, in __getattr__
+    v = getattr(self._inner, item)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 524, in __getattr__
+    if d is not None: return getattr(d, attr)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 485, in __getattr__
+    return self._ApplyTypes_(*args)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 478, in _ApplyTypes_
+    self._oleobj_.InvokeTypes(dispid, 0, wFlags, retType, argTypes, *args),
+pywintypes.com_error: (-2147023174, 'RPC サーバーを利用できません。', None, None)
+[2023-08-19 17:43:54.4  ] - INFO - MainProcess - MainThread - close >> transaction-workbook.
+[2023-08-19 17:43:54.4  ] - ERROR - MainProcess - MainThread - [異常検出終了] - ms2rss停止
+Traceback (most recent call last):
+  File "C:\Projects\ezms2rss\ezms2rss\main.py", line 31, in close_workbook_with_ms2rss
+    ms2rss.stop_excel_with_ms2rss()
+  File "C:\Projects\ezms2rss\ezms2rss\ms2rss.py", line 55, in stop_excel_with_ms2rss
+    utils.duplicate_xlsx_to_csv(TMP_PATH)
+  File "C:\Projects\ezms2rss\ezms2rss\utils\xlsx.py", line 93, in duplicate_xlsx_to_csv
+    copy_xlsx_sheet_to_csv(root_path, "command")
+  File "C:\Projects\ezms2rss\ezms2rss\utils\xlsx.py", line 101, in copy_xlsx_sheet_to_csv
+    valuelist = wb.sheets[sheet].used_range.options(ndim=2).value
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\main.py", line 722, in sheets
+    return Sheets(impl=self.impl.sheets)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\_xlwindows.py", line 518, in sheets
+    return Sheets(xl=self.xl.Worksheets)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\xlwings\_xlwindows.py", line 122, in __getattr__
+    v = getattr(self._inner, item)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 524, in __getattr__
+    if d is not None: return getattr(d, attr)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 485, in __getattr__
+    return self._ApplyTypes_(*args)
+  File "C:\Users\hatos\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32com\client\__init__.py", line 478, in _ApplyTypes_
+    self._oleobj_.InvokeTypes(dispid, 0, wFlags, retType, argTypes, *args),
+pywintypes.com_error: (-2147023174, 'RPC サーバーを利用できません。', None, None)

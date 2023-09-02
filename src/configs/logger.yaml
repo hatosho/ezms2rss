@@ -1,0 +1,42 @@
+version: 1
+disable_existing_loggers: false
+
+root:
+  level: DEBUG
+  handlers: [console, file]
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: console
+    stream: ext://sys.stdout
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: file
+    filename: ./logs/ezms2rss.log
+    encoding: utf8
+    when: 'MIDNIGHT'
+    interval: 1
+    backupCount: 7
+
+formatters:
+  console:
+    format: '[%(asctime)s.%(msecs)-3d] %(levelname)-8s - %(processName)-11s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  file:
+    format: '[%(asctime)s.%(msecs)-3d] - %(levelname)s - %(processName)s - %(threadName)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+loggers:
+  console:
+    level: INFO
+    handlers: [console]
+    qualname: console
+    propagate: no
+  file:
+    handlers: [file]
+    level: DEBUG
+    qualname: file
+    propagate: no

@@ -1,0 +1,75 @@
+▼ 大方針(仮想環境とパッケージ管理)検討
+Pythonのパッケージングと配布の全体像
+https://zenn.dev/zerebom/articles/60d5ad4b18c901
+ryeが流行りだが windows未対応なので、pyenv+poetryで行く
+
+
+▼ 結論と導入手順走り書き
+takashi-yoneya/python-template: Pythonで汎用的に使用できるテンプレートです
+https://github.com/takashi-yoneya/python-template
+→自分より上の階層を参照する方法など参考になる。ベースはこれに従う(pyenv+poetry)
+    SRC_DIR_PATH: str = os.path.join(
+        Path(__file__).parent.parent.absolute()
+    )  # srcディレクトリの絶対パス
+
+[2023年最新版:rye対応]Python案件で汎用的に使えるモダンなプロジェクトテンプレート
+https://zenn.dev/tk_resilie/articles/python_my_best_project#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90%EF%BC%88rye%E4%BD%BF%E7%94%A8%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%EF%BC%89
+→うえのレポジトリの解説記事
+
+poetry+pyenvでつくるお手軽開発環境
+https://zenn.dev/kumamoto/articles/9f0b520020bdd0
+→pyenvの導入からpoetryのチュートリルまで
+
+pyenvをWindowsにインストール
+https://zenn.dev/lot36z/articles/1c734bde03677c
+→ベースは一つ上の記事だが、windowsへのpyenv導入はこちらを参考
+
+Introduction | Documentation | Poetry - Python dependency management and packaging made easy
+https://python-poetry.org/docs/#installing-with-the-official-installer
+→ベースは一つ上の記事だが、windowsへのpoetry導入はpoetryの公式文書を参考
+
+Pythonで自作ライブラリを作るとき、setup.pyに代えてpyproject.tomlを使ってみませんか？ - nikkie-ftnextの日記
+https://nikkie-ftnext.hatenablog.com/entry/why-dont-you-write-pyproject-toml-instead-of-setup-py
+→参考。pyproject.tomlのチュートリアル
+
+▼フォルダ構成
+loggingはtakashiのべスプラに従う
+tests,sample は無理やりパス通すので行けそう
+.vscode/setting.jsonを利用して、linterとformatterを統一する
+
+▼ git init
+【Git/GitHub】リポジトリの作成からpushまでの流れを解説 | Webエンジニア Wiki
+https://web-engineer-wiki.com/git/init-push/
+→チュートリアル
+
+
+▼ 適宜追加
+チームで推奨するVSCode拡張機能を共有するtips | フューチャー技術ブログ
+https://future-architect.github.io/articles/20200828/
+→.vscodeの作り方と参画者の利用方法
+→@recommennded
+
+VSCodeでプロジェクトの設定ファイルを準備する
+https://zenn.dev/youfuku/articles/7f1c8aaf1cc320
+→vscodeの設定をいじる必要があるので、プロジェクトでsetting.jsonを持つ
+
+Pythonのリンター・フォーマッターをしっかりと理解する（Flake8, Black, isort, mypy）
+https://zenn.dev/tanny/articles/cdb555d6124a2a
+→4つの役割と設定方法
+
+flake8の設定をpyproject.tomlに統合する - Qiita
+https://qiita.com/que9/items/7cf9f992b8decb4265c1
+→flake8はpyproject.tomlに対応していない。記事は参考まで。今回は.flake8を利用する
+
+Python の型チェックを VSCode 上で行いたい
+https://zenn.dev/k0kishima/articles/5466aaeb57be7a
+→ mypyのsetting方法
+
+Python project用にlinter / formatterを一通り整備する
+https://zenn.dev/taxin/articles/setup-python-code-formatter-101
+→ 参考
+
+▼ .venv の使い方
+
+▼ .vscode の使い方
+@recommennded で検索して必要な extension を入れる
