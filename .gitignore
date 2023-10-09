@@ -3,6 +3,6 @@
 /tmp/
 /.venv/
 /poetry.lock
-/logs/
+/logs/*.log*
 *.pyc
 __pycache__/
