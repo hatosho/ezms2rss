@@ -11,12 +11,10 @@ class Configs(BaseSettings):
     全環境で共通の設定は、以下に直接記述する
     """
 
-    # ENV: str
-    # VERSION: str = "0.0.1"
     SRC_DIR_PATH: str = os.path.join(Path(__file__).parent.parent.absolute())
-    LOGGER_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "config", "logger.yaml")
-    CRED_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "config", "credentials.yml")
-    APP_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "config", "application.yml")
+    LOGGER_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "configs", "logger.yaml")
+    CRED_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "configs", "credentials.yaml")
+    APP_CONFIG_PATH: str = os.path.join(SRC_DIR_PATH, "configs", "application.yaml")
 
     class Config:
         env_file = ".env"

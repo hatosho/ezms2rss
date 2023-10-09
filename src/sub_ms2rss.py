@@ -1,5 +1,6 @@
 import logging
-from datetime import datetime
+
+# from datetime import datetime
 from time import sleep
 
 import numpy as np
@@ -39,6 +40,7 @@ bank_account_category = "0"
 
 # line にメッセージ送信
 def send_line_notify(message):
+    EXEC_MODE = "prod"  # !!!!!!!!!!!!!test!!!!!!!!!!!!!
     utils.send_line_notify(EXEC_MODE, LINE_TOKEN, message)
 
 
@@ -115,34 +117,34 @@ def get_openprice_from_rssmarket():
 
 
 # 指定した時刻での現在値取得
-def get_currentprice_from_rssticklist(dt: datetime, stocks: list):
-    df = utils.read_matrix_from_xlsxbook(TRANSACTION_BOOK_PATH, "ticklist")
-    df = df.loc[:, ["銘柄コード", "時刻", "出来高", "約定値"]]
-    # df = (df.astype({"銘柄コード": "int32"})).astype({"銘柄コード": "string"})
-    df = df.dropna(how="any")
-    df = df[df["銘柄コード"] != "銘柄コード"]
-    df = (df.astype({"銘柄コード": "int32"})).astype({"銘柄コード": "string"})
-    span_under, span_over = utils.calc_target_timespan(dt)
-    df_unique = df[["銘柄コード"]].drop_duplicates()
-    print(df_unique)
-    # TODO：to_datetime変換するときに日付が入っていないと自動で本日日付で埋められる。いずれ考えよう
-    df["時刻"] = pd.to_datetime(df["時刻"])
-    df = df[df["時刻"] < span_over]
-    df = df.loc[df.groupby("銘柄コード")["時刻"].idxmax(), :]
-    df["現在値"] = df["約定値"].where(df["時刻"] >= span_under)
-    df = df.set_index("銘柄コード")
-    logger.debug(
-        "current price detail is below, filterd by timestamp under %s and latest.\
-             \n %s",
-        dt,
-        tabulate(df, showindex=True, headers="keys", tablefmt="simple"),
-    )
-    dic = dict(zip(pd.Series(df.index, dtype=str), df["現在値"]))
-    stocks = map(str, stocks)
-    for stock in stocks:
-        if stock not in dic.keys():
-            dic[stock] = np.nan
-    return dic
+# def get_currentprice_from_rssticklist(dt: datetime, stocks: list):
+#     df = utils.read_matrix_from_xlsxbook(TRANSACTION_BOOK_PATH, "ticklist")
+#     df = df.loc[:, ["銘柄コード", "時刻", "出来高", "約定値"]]
+#     # df = (df.astype({"銘柄コード": "int32"})).astype({"銘柄コード": "string"})
+#     df = df.dropna(how="any")
+#     df = df[df["銘柄コード"] != "銘柄コード"]
+#     df = (df.astype({"銘柄コード": "int32"})).astype({"銘柄コード": "string"})
+#     span_under, span_over = utils.calc_target_timespan(dt)
+#     df_unique = df[["銘柄コード"]].drop_duplicates()
+#     print(df_unique)
+#     # TODO：to_datetime変換するときに日付が入っていないと自動で本日日付で埋められる。いずれ考えよう
+#     df["時刻"] = pd.to_datetime(df["時刻"])
+#     df = df[df["時刻"] < span_over]
+#     df = df.loc[df.groupby("銘柄コード")["時刻"].idxmax(), :]
+#     df["現在値"] = df["約定値"].where(df["時刻"] >= span_under)
+#     df = df.set_index("銘柄コード")
+#     logger.debug(
+#         "current price detail is below, filterd by timestamp under %s and latest.\
+#              \n %s",
+#         dt,
+#         tabulate(df, showindex=True, headers="keys", tablefmt="simple"),
+#     )
+#     dic = dict(zip(pd.Series(df.index, dtype=str), df["現在値"]))
+#     stocks = map(str, stocks)
+#     for stock in stocks:
+#         if stock not in dic.keys():
+#             dic[stock] = np.nan
+#     return dic
 
 
 # 建玉一覧取得
@@ -190,30 +192,30 @@ def search_rssorderidlist_by_orderids(orderids: list):
 
 
 # 発注IDから注文番号を検索して返す
-def get_ordernumbers_by_orderids(df_get, df_rls):
-    if not (df_get.empty or df_rls.empty):
-        df_get = df_get.loc[:, ["発注ID", "銘柄コード", "position"]]
-        df_rls = df_rls.loc[:, ["発注ID", "銘柄コード", "position"]]
-        orders = pd.concat([df_get, df_rls])
-    elif df_get.empty and df_rls.empty:
-        raise ValueError("the order does not exist.")
-    elif df_get.empty:
-        df_rls = df_rls.loc[:, ["発注ID", "銘柄コード", "position"]]
-        orders = df_rls
-    else:
-        df_get = df_get.loc[:, ["発注ID", "銘柄コード", "position"]]
-        orders = df_get
-    orderids = orders["発注ID"].to_list()
-    numbers = utils.search_rssorderidlist_by_orderids(orderids)
-    ord_join_num = pd.merge(orders, numbers, on="発注ID", how="left")
-    if ord_join_num.empty:
-        raise ValueError("the specified order number does not exist.")
-    # TODO：emptyだけでなくひとつでもnanが出たらエラー
-    ord_join_num = ord_join_num.rename(columns={"銘柄コード": "brand"})
-    ord_join_num = ord_join_num.rename(columns={"注文番号": "ordnum"})
-    ord_join_num = ord_join_num.loc[:, ["brand", "position", "ordnum"]]
-    dic = ord_join_num.set_index("brand").to_dict(orient="index")
-    return dic
+# def get_ordernumbers_by_orderids(df_get, df_rls):
+#     if not (df_get.empty or df_rls.empty):
+#         df_get = df_get.loc[:, ["発注ID", "銘柄コード", "position"]]
+#         df_rls = df_rls.loc[:, ["発注ID", "銘柄コード", "position"]]
+#         orders = pd.concat([df_get, df_rls])
+#     elif df_get.empty and df_rls.empty:
+#         raise ValueError("the order does not exist.")
+#     elif df_get.empty:
+#         df_rls = df_rls.loc[:, ["発注ID", "銘柄コード", "position"]]
+#         orders = df_rls
+#     else:
+#         df_get = df_get.loc[:, ["発注ID", "銘柄コード", "position"]]
+#         orders = df_get
+#     orderids = orders["発注ID"].to_list()
+#     numbers = utils.search_rssorderidlist_by_orderids(orderids)
+#     ord_join_num = pd.merge(orders, numbers, on="発注ID", how="left")
+#     if ord_join_num.empty:
+#         raise ValueError("the specified order number does not exist.")
+#     # TODO：emptyだけでなくひとつでもnanが出たらエラー
+#     ord_join_num = ord_join_num.rename(columns={"銘柄コード": "brand"})
+#     ord_join_num = ord_join_num.rename(columns={"注文番号": "ordnum"})
+#     ord_join_num = ord_join_num.loc[:, ["brand", "position", "ordnum"]]
+#     dic = ord_join_num.set_index("brand").to_dict(orient="index")
+#     return dic
 
 
 # # 注文内容→注文番号(前提:最小単元株数での取引しかしない)

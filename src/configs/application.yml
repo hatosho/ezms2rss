@@ -1,7 +1,0 @@
-EZMS2RSS:
-  LOCAL_TMP_ROOT_PATH: 'C:/Projects/ezms2rss/tmp/'
-EXCEL:
-  EXE_PATH : 'C:/Program Files/Microsoft Office/root/Office16/EXCEL.EXE'
-  ADDIN_PATH: 'C:/Users/hatos/AppData/Local/MarketSpeed2/Download/rss/MarketSpeed2_RSS_64bit.xll'
-RAKUTEN:
-  MS2_ROOT_PATH: 'C:/Users/hatos/AppData/Local/MarketSpeed2/Bin'

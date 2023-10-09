@@ -2,15 +2,17 @@ from datetime import datetime, timedelta, timezone
 
 import pandas as pd
 
+ORDER_TRRIGER = False
+
 
 # under=前1分, over=前1秒
-def calc_target_timespan(self, dt: datetime):
+def calc_target_timespan(dt: datetime):
     span_over = dt + timedelta(minutes=1)
     span_under = dt
     return span_under, span_over
 
 
-def calc_orderid_prefix(self):
+def calc_orderid_prefix():
     orderid_prefix = str(
         datetime.now(tz=timezone(timedelta(hours=9))).strftime("%H%M%S")
     )
@@ -27,7 +29,7 @@ def classify_orders_into_get_or_release(self, orders: dict):
     return orders_get, orders_rls
 
 
-def initialize_dataframe_for_open(self, orders):
+def initialize_dataframe_for_open(orders):
     if (orders["position"] == 1).sum() > 0:
         orders_get = orders[orders["position"] == 1]
     else:
@@ -35,7 +37,7 @@ def initialize_dataframe_for_open(self, orders):
     return orders_get
 
 
-def initialize_dataframe_for_close(self, orders):
+def initialize_dataframe_for_close(orders):
     if (orders["position"] == 2).sum() > 0:
         orders_release = orders[orders["position"] == 2]
     else:
@@ -44,7 +46,7 @@ def initialize_dataframe_for_close(self, orders):
 
 
 # 新規注文の入力DF生成
-def setup_input_dataframe_for_open(self, orders_get, orderid_prefix: str):
+def setup_input_dataframe_for_open(orders_get, orderid_prefix: str):
     if orders_get.empty:
         df_open = pd.DataFrame()
     else:
@@ -52,7 +54,7 @@ def setup_input_dataframe_for_open(self, orders_get, orderid_prefix: str):
         df_open = df_open.rename_axis("idx").reset_index()
         df_open = df_open.astype({"idx": "string"})
         df_open = df_open.assign(発注ID=orderid_prefix + "1" + df_open["idx"])
-        df_open = df_open.assign(発注トリガー=self.ORDER_TRRIGER)
+        df_open = df_open.assign(発注トリガー=ORDER_TRRIGER)
         # df_open = df_open.assign(銘柄コード)
         df_open = df_open.rename(columns={"action": "売買区分"})
         df_open = df_open.assign(注文区分="0")
@@ -94,7 +96,7 @@ def setup_input_dataframe_for_close(self, orders_rls, orderid_prefix: str):
         df_close = df_close.rename_axis("idx").reset_index()
         df_close = df_close.astype({"idx": "string"})
         df_close = df_close.assign(発注ID=orderid_prefix + "2" + df_close["idx"])
-        df_close = df_close.assign(発注トリガー=self.ORDER_TRRIGER)
+        df_close = df_close.assign(発注トリガー=ORDER_TRRIGER)
         # df_close = df_close.assign(銘柄コード)
         df_close = df_close.rename(columns={"action": "売買区分"})
         df_close = df_close.assign(注文区分="0")
@@ -123,7 +125,7 @@ def setup_input_dataframe_for_close(self, orders_rls, orderid_prefix: str):
     return df_close
 
 
-def filter_holdings_by_orders(self, holdings_all, orders_rls):
+def filter_holdings_by_orders(holdings_all, orders_rls):
     holdings = pd.merge(
         orders_rls,
         holdings_all,
@@ -138,7 +140,7 @@ def filter_holdings_by_orders(self, holdings_all, orders_rls):
     return holdings
 
 
-def polish_dataframe_of_order_status(self, order_status_df):
+def polish_dataframe_of_order_status(order_status_df):
     # TODO：joinしなくてreplaceで書き直せる
     # TODO：関数名はsetup_inputに寄せられるか？
     status_chart = pd.DataFrame(

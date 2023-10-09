@@ -1,8 +1,10 @@
 import numpy as np
 
+ORDER_TRRIGER = False
+
 
 # 信用新規注文クエリ組立て
-def assemble_query_rssmarginpopenorder(self, orders):
+def assemble_query_rssmarginpopenorder(orders):
     querys = []
     for i, order in enumerate(orders.to_dict(orient="records")):
         query = (
@@ -57,7 +59,7 @@ def assemble_query_rssmarginpopenorder(self, orders):
 
 
 # 信用返済注文クエリ組立て
-def assemble_query_rssmargincloseorder(self, orders):
+def assemble_query_rssmargincloseorder(orders):
     querys = []
     for i, order in enumerate(orders.to_dict(orient="records")):
         query = (
@@ -108,7 +110,7 @@ def assemble_query_rssmargincloseorder(self, orders):
 
 
 # キャンセル注文クエリ組立て
-def assemble_query_rsscancelorder(self, orderid_prefix, order_numbers):
+def assemble_query_rsscancelorder(orderid_prefix, order_numbers):
     querys = [""]
     # TODO：新規/返済に合わせてリファクタ
     for i, order_number in enumerate(order_numbers):
@@ -117,7 +119,7 @@ def assemble_query_rsscancelorder(self, orderid_prefix, order_numbers):
             # "RssCancelOrder("
             + str(orderid_prefix + "3" + str(i))
             + ","
-            + str(self.ORDER_TRRIGER)
+            + str(ORDER_TRRIGER)
             + ","
             + str(order_number)
             + ")"
@@ -127,7 +129,7 @@ def assemble_query_rsscancelorder(self, orderid_prefix, order_numbers):
 
 
 # 市況取得クエリ組立て
-def assemble_query_rssmarket(self, stocks: list):
+def assemble_query_rssmarket(stocks: list):
     querys = [["銘柄コード"], ["現在日付"], ["始値詳細時刻"], ["始値"], ["現在値詳細時刻"], ["現在値"]]
     for i, stock in enumerate(stocks):
         # TODO：np.arrayで書き直そう
@@ -141,7 +143,7 @@ def assemble_query_rssmarket(self, stocks: list):
 
 
 # 歩値取得クエリ組立て
-def assemble_query_rssticklist(self, stocks: list):
+def assemble_query_rssticklist(stocks: list):
     querys = np.array([[], [], [], [], []])
     row_interval = np.array([["--------", ""], ["", ""], ["", ""], ["", ""], ["", ""]])
     for i, stock in enumerate(stocks):

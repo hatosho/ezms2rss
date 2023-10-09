@@ -57,6 +57,7 @@ from _pytest.pathlib import bestrelpath
 from _pytest.pathlib import import_path
 from _pytest.pathlib import ImportMode
 from _pytest.pathlib import resolve_package_path
+from _pytest.pathlib import safe_exists
 from _pytest.stash import Stash
 from _pytest.warning_types import PytestConfigWarning
 from _pytest.warning_types import warn_explicit_for
@@ -137,7 +138,9 @@ def main(
 ) -> Union[int, ExitCode]:
     """Perform an in-process test run.
 
-    :param args: List of command line arguments.
+    :param args:
+        List of command line arguments. If `None` or not given, defaults to reading
+        arguments directly from the process command line (:data:`sys.argv`).
     :param plugins: List of plugin objects to be auto-registered during initialization.
 
     :returns: An exit code.
@@ -442,10 +445,10 @@ class PytestPluginManager(PluginManager):
         # so we avoid accessing possibly non-readable attributes
         # (see issue #1073).
         if not name.startswith("pytest_"):
-            return
+            return None
         # Ignore names which can not be hooks.
         if name == "pytest_plugins":
-            return
+            return None
 
         opts = super().parse_hookimpl_opts(plugin, name)
         if opts is not None:
@@ -454,9 +457,9 @@ class PytestPluginManager(PluginManager):
         method = getattr(plugin, name)
         # Consider only actual functions for hooks (#3775).
         if not inspect.isroutine(method):
-            return
+            return None
         # Collect unmarked hooks as long as they have the `pytest_' prefix.
-        return _get_legacy_hook_marks(
+        return _get_legacy_hook_marks(  # type: ignore[return-value]
             method, "impl", ("tryfirst", "trylast", "optionalhook", "hookwrapper")
         )
 
@@ -465,7 +468,7 @@ class PytestPluginManager(PluginManager):
         if opts is None:
             method = getattr(module_or_class, name)
             if name.startswith("pytest_"):
-                opts = _get_legacy_hook_marks(
+                opts = _get_legacy_hook_marks(  # type: ignore[assignment]
                     method,
                     "spec",
                     ("firstresult", "historic"),
@@ -555,12 +558,8 @@ class PytestPluginManager(PluginManager):
             anchor = absolutepath(current / path)
 
             # Ensure we do not break if what appears to be an anchor
-            # is in fact a very long option (#10169).
-            try:
-                anchor_exists = anchor.exists()
-            except OSError:  # pragma: no cover
-                anchor_exists = False
-            if anchor_exists:
+            # is in fact a very long option (#10169, #11394).
+            if safe_exists(anchor):
                 self._try_load_conftest(anchor, importmode, rootpath)
                 foundanchor = True
         if not foundanchor:
@@ -1063,9 +1062,10 @@ class Config:
             fin()
 
     def get_terminal_writer(self) -> TerminalWriter:
-        terminalreporter: TerminalReporter = self.pluginmanager.get_plugin(
+        terminalreporter: Optional[TerminalReporter] = self.pluginmanager.get_plugin(
             "terminalreporter"
         )
+        assert terminalreporter is not None
         return terminalreporter._tw
 
     def pytest_cmdline_parse(

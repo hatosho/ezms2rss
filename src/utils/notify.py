@@ -2,7 +2,6 @@ import requests
 
 
 def send_line_notify(exec_mode, line_notify_token, message):
-    exec_mode = "dev"
     if exec_mode == "dev":
         return
     line_notify_api = "https://notify-api.line.me/api/notify"

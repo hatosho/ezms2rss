@@ -1,1 +1,8 @@
-/src/configs/credentials.yml
+/src/configs/credentials.yaml
+/src/configs/application.yaml
+/tmp/
+/.venv/
+/poetry.lock
+/logs/
+*.pyc
+__pycache__/

@@ -36,6 +36,7 @@ from _pytest.outcomes import exit
 from _pytest.pathlib import absolutepath
 from _pytest.pathlib import bestrelpath
 from _pytest.pathlib import fnmatch_ex
+from _pytest.pathlib import safe_exists
 from _pytest.pathlib import visit
 from _pytest.reports import CollectReport
 from _pytest.reports import TestReport
@@ -462,6 +463,11 @@ class _bestrelpath_cache(Dict[Path, str]):
 
 @final
 class Session(nodes.FSCollector):
+    """The root of the collection tree.
+
+    ``Session`` collects the initial paths given as arguments to pytest.
+    """
+
     Interrupted = Interrupted
     Failed = Failed
     # Set on the session by runner.pytest_sessionstart.
@@ -890,7 +896,7 @@ def resolve_collection_argument(
         strpath = search_pypath(strpath)
     fspath = invocation_path / strpath
     fspath = absolutepath(fspath)
-    if not fspath.exists():
+    if not safe_exists(fspath):
         msg = (
             "module or package not found: {arg} (missing __init__.py?)"
             if as_pypath
