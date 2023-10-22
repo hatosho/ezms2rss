@@ -1,4 +1,3 @@
-# import pytest
 import os
 import sys
 from pathlib import Path
@@ -10,18 +9,16 @@ from src import main as ez
 from src import sub_ms2rss as sub
 
 
-# line通知テスト
-def t001():
-    msg = "test!"
-    sub.send_line_notify(msg)
+def test_001():
+    # line通知テスト
+    assert sub.send_line_notify("test!") == 200
 
 
-# ms2とexcelを起動して終了するだけ
-def t002():
+def test_002():
+    # ms2とexcelを起動するだけ。動作確認は目視でお願いします
     ez.open_workbook_with_ms2rss()
+
+
+def test_003():
+    # ms2とexcelを終了するだけ。動作確認は目視でお願いします
     ez.close_workbook_with_ms2rss()
-
-
-if __name__ == "__main__":
-    t001()
-    t002()

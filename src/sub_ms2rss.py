@@ -41,7 +41,8 @@ bank_account_category = "0"
 # line にメッセージ送信
 def send_line_notify(message):
     EXEC_MODE = "prod"  # !!!!!!!!!!!!!test!!!!!!!!!!!!!
-    utils.send_line_notify(EXEC_MODE, LINE_TOKEN, message)
+    response_code = utils.send_line_notify(EXEC_MODE, LINE_TOKEN, message)
+    return response_code
 
 
 # ms2起動 → excel起動
