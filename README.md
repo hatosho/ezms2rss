@@ -63,7 +63,7 @@ pyenv install --list
 6. Python のインストール
    必要なバージョンの Python がインストールされていない場合のみ行います。
    上記のコマンドで出力された Python バージョンの中から必要なものを指定して、インストールしてください。
-   2023/10/01 時点で 3.11.0 を採用します。
+   2023/10/01 時点では、"3.11.0" を採用します。
 
 ```powershell :
 pyenv install [バージョン]
@@ -119,12 +119,11 @@ poetry config --list
 
 5. poetry の設定変更
 
-   .venv 仮想環境ディレクトリをプロジェクト直下に変更
-
-   pyenv で指定したバージョンを Poetry で利用するように変更
-
 ```Powershell :
+# .venv 仮想環境ディレクトリをプロジェクト直下に変更
 poetry config virtualenvs.in-project true
+
+#pyenv で指定したバージョンを Poetry で利用するように変更
 poetry config virtualenvs.prefer-active-python true
 ```
 
@@ -157,12 +156,11 @@ poetry install
 
 10. Poetry を利用して Python を実行した際の Python バージョンを確認
 
-    結果が返ってこればインストール成功
-
-    poetry 環境情報を表示
-
 ```Powershell :
+# 結果が返ってこればインストール成功
 poetry run python -V
+
+# poetry 環境情報を表示
 poetry env info
 ```
 
@@ -236,37 +234,44 @@ pyenv --version
 
 ### 2. Poetry による Python パッケージ管理（任意）
 
-インストールされているモジュールの確認
-
-キーワードを含むパッケージの検索
-
-モジュールの追加
-
 ```Powershell :
+# インストールされているモジュールの確認
 poetry show
+
+# キーワードを含むパッケージの検索
 poetry search [キーワード]
+
+# モジュールの追加
 poetry add [モジュール名]
 ```
 
 ### 3. vscode の拡張機能（linter / formatter）
 
 linter / formatter には vscode の拡張機能を利用する。
-
 開発者間でこれらを統一するため、vscode の設定ファイルをバージョン管理に含める。設定ファイルは、.vscode 配下。
 
 #### 3-1. vscode 拡張機能の導入方法
 
-▼ 参考：チームで推奨する VSCode 拡張機能を共有する tips
-
-https://future-architect.github.io/articles/20200828/#%E6%96%B0%E8%A6%8F%E5%8F%82%E7%94%BB%E8%80%85%E3%81%AE%E6%89%8B%E9%A0%86
-
 1. vscode を起動して、ctrl + O
 2. 拡張機能の推奨項目一覧が表示されるので導入する。
+
+▼ 参考：チームで推奨する VSCode 拡張機能を共有する tips
+https://future-architect.github.io/articles/20200828/#%E6%96%B0%E8%A6%8F%E5%8F%82%E7%94%BB%E8%80%85%E3%81%AE%E6%89%8B%E9%A0%86
 
 #### 3-2. linter / formatter
 
 うえで導入した linter / formatter について簡単に説明する。
 
 ### 4. テスト方法
+
+テストには pytest を利用する。
+
+```Powershell :
+# すべてのテストを実行(テストケース別に結果を出力, passed のときにもprint出力をコンソール上に表示させる)
+poetry run pytest -v --capture=no
+
+# 指定したファイルのテストのみ実施
+poetry run pytest ./tests/test_main.py
+```
 
 # Acknowledgments / 謝辞
